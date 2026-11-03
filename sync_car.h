@@ -1,5 +1,6 @@
-#include <stdbool.h>
 #ifndef SYNC_CAR_H
+#include <stdbool.h>
+#include <pthread.h>
 #define SYNC_CAR_H
 
 struct station
@@ -7,6 +8,9 @@ struct station
     int quant_assentos_livres;
     int quant_passageiros;
     bool vagao;
+    pthread_mutex_t mutex;
+    pthread_cond_t cond_passageiro;
+    pthread_cond_t cond_vagao;
 };
 
 void station_init(struct station *station);
