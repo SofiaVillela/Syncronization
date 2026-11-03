@@ -24,27 +24,29 @@ void station_wait_for_car(struct station *station){
     while(station->vagao == false || station->quant_assentos_livres == 0 || station->quant_passageiros == 0){
         pthread_cond_wait(&station->cond_passageiro, &station->mutex);
     }
-    station->quant_assentos_livres--:
-    station->quant_passageiros--:
-    if(quant_assentos_livres == 0 || quant_passageiros == 0){
+    station->quant_assentos_livres--;
+    station->quant_passageiros--;
+    if(station->quant_assentos_livres == 0 || station->quant_passageiros == 0){
         pthread_cond_signal(&station->cond_vagao);
     }
     pthread_mutex_unlock(&station->mutex);
 }
 
 
-void statio_load_car(struct station *station, int count){
+void station_load_car(struct station *station, int count){
     pthread_mutex_lock(&station->mutex);
     station->quant_assentos_livres = count;
-    while(station->quant_passageiros != 0 || station->quant_assentos_livres != 0){
-        pthread_cond_wait(&station->cond_vagao, &station->mutex);
+    if(station->quant_assentos_livres == 0 || station->quant_passageiros == 0){
+        pthread_mutex_unlock(&station->mutex);
+        station->quant_assentos_livres = 0;
+        return;
     }
     station->vagao = true;
-    pthread_cond_signal(&statio->cond_passageiro);
+    pthread_cond_signal(&station->cond_passageiro);
     while(station->quant_passageiros != 0 || station->quant_assentos_livres != 0){
         pthread_cond_wait(&station->cond_vagao, &station->mutex);
     }
     station->vagao = false;
-    statio->quant_assentos_livres = 0;
+    station->quant_assentos_livres = 0;
     pthread_mutex_unlock(&station->mutex);
 }
