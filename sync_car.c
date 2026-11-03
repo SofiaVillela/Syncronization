@@ -10,3 +10,8 @@ void station_init(struct station *station){
     pthread_cond_init(&station->cond_vagao, NULL);
 
 }
+
+void station_on_board(struct station *station){
+    pthread_mutex_lock(&station->mutex);
+    pthread_mutex_unlock(&station->mutex);
+}
