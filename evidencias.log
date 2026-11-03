@@ -383,4 +383,35 @@ collect2: error: ld returned 1 exit status
 [?2004lcar entering station with 46 free seats
 Error: Failed to complete after 2 seconds. Something's wrong, or your system is terribly slow. Possible error hint: [Some more complicated issue appears to have caused passengers not to board when given the opportunity]
 [?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ git af[Kdd .
+[?2004l[?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ [7mgit commit -m "fix: station_load_car retorna na hora sem passageiros ou assentos"[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cgit commit -m "fix: station_load_car retorna na hora sem passageiros ou assentos"
+[?2004l[main 60c6294] fix: station_load_car retorna na hora sem passageiros ou assentos
+ 3 files changed, 350 insertions(+), 63 deletions(-)
+ create mode 100644 sync_car
+[?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ git push
+[?2004lEnumerating objects: 8, done.
+Counting objects:  12% (1/8)Counting objects:  25% (2/8)Counting objects:  37% (3/8)Counting objects:  50% (4/8)Counting objects:  62% (5/8)Counting objects:  75% (6/8)Counting objects:  87% (7/8)Counting objects: 100% (8/8)Counting objects: 100% (8/8), done.
+Delta compression using up to 8 threads
+Compressing objects:  20% (1/5)Compressing objects:  40% (2/5)Compressing objects:  60% (3/5)Compressing objects:  80% (4/5)Compressing objects: 100% (5/5)Compressing objects: 100% (5/5), done.
+Writing objects:  20% (1/5)Writing objects:  40% (2/5)Writing objects:  60% (3/5)Writing objects:  80% (4/5)Writing objects: 100% (5/5)Writing objects: 100% (5/5), 8.51 KiB | 435.00 KiB/s, done.
+Total 5 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas:   0% (0/1)[Kremote: Resolving deltas: 100% (1/1)[Kremote: Resolving deltas: 100% (1/1), completed with 1 local object.[K
+To https://github.com/SofiaVillela/Syncronization.git
+   e54b55a..60c6294  main -> main
+[?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ [K]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ [K]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ git pushcommit -m "fix: station_load_car retorna na hora sem passageiros ou assentos"[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cadd .[K./sync_car[49@gcc -Wall -pthread sync_car.c sync_car-runner.c -o [C[C[C[C[C[C[C[C
+[?2004l[?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ gcc -Wall -pthread sync_car.c sync_car-runner.c -o sync_carit push[Kcommit -m "fix: station_load_car retorna na hora sem passageiros ou assentos"[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cadd .[K./sync_car
+[?2004lcar entering station with 30 free seats
+Error: Failed to complete after 2 seconds. Something's wrong, or your system is terribly slow. Possible error hint: [Some more complicated issue appears to have caused passengers not to board when given the opportunity]
+[?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ [7mgcc -Wall -pthread sync_car.c sync_car-runner.c -o sync_car[27mgcc -Wall -pthread sync_car.c sync_car-runner.c -o sync_car
+[?2004l[?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ gcc -Wall -pthread sync_car.c sync_car-runner.c -o sync_car./sync_car[K
+[?2004lcar entering station with 1 free seats
+Error: station_load_car failed
+[?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ ./sync_car[49@gcc -Wall -pthread sync_car.c sync_car-runner.c -o [C[C[C[C[C[C[C[C
+[?2004l[?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ gcc -Wall -pthread sync_car.c sync_car-runner.c -o sync_car./sync_car[K
+[?2004lcar entering station with 34 free seats
+Error: station_load_car failed
+[?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ ./sync_car[49@gcc -Wall -pthread sync_car.c sync_car-runner.c -o [C[C[C[C[C[C[C[C
+[?2004l[?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ gcc -Wall -pthread sync_car.c sync_car-runner.c -o sync_car./sync_car[K
+[?2004lcar entering station with 32 free seats
+Error: station_load_car returned early!
+[?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ git add .
 [?2004l

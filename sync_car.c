@@ -42,8 +42,8 @@ void station_load_car(struct station *station, int count){
         return;
     }
     station->vagao = true;
-    pthread_cond_signal(&station->cond_passageiro);
-    while(station->quant_passageiros != 0 || station->quant_assentos_livres != 0){
+    pthread_cond_broadcast(&station->cond_passageiro);
+    while(station->quant_passageiros != 0 && station->quant_assentos_livres != 0){
         pthread_cond_wait(&station->cond_vagao, &station->mutex);
     }
     station->vagao = false;
