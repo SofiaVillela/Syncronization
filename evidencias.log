@@ -662,4 +662,64 @@ Script started on 2026-11-03 17:19:55-03:00 [TERM="xterm-256color" TTY="/dev/pts
 [K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cgcc -Wall -pthread sync_car.c sync_car-runner.c -o sync_carit log --oneline -3[Kcc -Wall -pthread sync_car.c sync_car-runner.c -o sync_carit push[Kcommit -m "feat:implementa  station_wait_for_car"add .[K[6Ppwdwhoami[3Ppwd
 [?2004l/mnt/c/Users/SofiaVillela/Syncronization
 [?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ git add .
+[?2004l[?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ [7mgit commit -m "fix: corrige o embarque e a partida do vagão" -m "- st[27m[7ma[27m[7mtion_load_car acorda todos os passageiros com broadcast [27m
+[7m- corrige a condição do while do vagão (De Morgan)[27m
+[7m- adiciona quant_embarcando para o vagão esperar quem está embarcando[27m
+[7m- station_on_board acorda o vagão quando o embarque termina[27m
+[7m- zera os assentos antes de soltar o mutex no retorno imediato"[27m[A[A[A[A[A]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ git commit -m "fix: corrige o embarque e a partida do vagão" -m "- station_load_car acorda todos os passageiros com broadcast
+- corrige a condição do while do vagão (De Morgan)
+- adiciona quant_embarcando para o vagão esperar quem está embarcando
+- station_on_board acorda o vagão quando o embarque termina
+- zera os assentos antes de soltar o mutex no retorno imediato"
+[?2004l[main 5837b41] fix: corrige o embarque e a partida do vagão
+ 4 files changed, 260 insertions(+), 2 deletions(-)
+[?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ [7mgit push[27mgit push
+[?2004lEnumerating objects: 11, done.
+Counting objects:   9% (1/11)Counting objects:  18% (2/11)Counting objects:  27% (3/11)Counting objects:  36% (4/11)Counting objects:  45% (5/11)Counting objects:  54% (6/11)Counting objects:  63% (7/11)Counting objects:  72% (8/11)Counting objects:  81% (9/11)Counting objects:  90% (10/11)Counting objects: 100% (11/11)Counting objects: 100% (11/11), done.
+Delta compression using up to 8 threads
+Compressing objects:  16% (1/6)Compressing objects:  33% (2/6)Compressing objects:  50% (3/6)Compressing objects:  66% (4/6)Compressing objects:  83% (5/6)Compressing objects: 100% (6/6)Compressing objects: 100% (6/6), done.
+Writing objects:  16% (1/6)Writing objects:  33% (2/6)Writing objects:  50% (3/6)Writing objects:  66% (4/6)Writing objects:  83% (5/6)Writing objects: 100% (6/6)Writing objects: 100% (6/6), 3.50 KiB | 127.00 KiB/s, done.
+Total 6 (delta 4), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas:   0% (0/4)[Kremote: Resolving deltas:  25% (1/4)[Kremote: Resolving deltas:  50% (2/4)[Kremote: Resolving deltas:  75% (3/4)[Kremote: Resolving deltas: 100% (4/4)[Kremote: Resolving deltas: 100% (4/4), completed with 4 local objects.[K
+To https://github.com/SofiaVillela/Syncronization.git
+   c6d635f..5837b41  main -> main
+[?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ [7mprintf 'all:\n\tgcc -Wall -pthread sync_car.c sync_car-runner.c -o sy[27m[7mn[27m[7mc_car\n\nclean:\n\trm -f sync_car\n\n.PHONY: all clean\n' > Makefile[27m[A]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ printf 'all:\n\tgcc -Wall -pthread sync_car.c sync_car-runner.c -o sync_car\n\nclean:\n\trm -f sync_car\n\n.PHONY: all clean\n' > Makefile
+[?2004l[?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ Script started on 2026-11-03 19:36:43-03:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="139" LINES="16"]
+[?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ date
+[?2004lTue Nov  3 19:36:46 -03 2026
+[?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ [K]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ [K]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ [K]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ [K]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ [K]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ [K]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ [7mmake clean && make[27mmake clean && make
+[?2004lrm -f sync_car
+gcc -Wall -pthread sync_car.c sync_car-runner.c -o sync_car
+[?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ [7mfor i in $(seq 1 3); do ./sync_car || break; done[27mfor i in $(seq 1 3); do ./sync_car || break; done\[K
+[?2004lcar entering station with 48 free seats
+car departed station with 48 new passenger(s) (expected 48)
+car entering station with 6 free seats
+car departed station with 6 new passenger(s) (expected 6)
+car entering station with 21 free seats
+car departed station with 21 new passenger(s) (expected 21)
+car entering station with 15 free seats
+car departed station with 15 new passenger(s) (expected 15)
+car entering station with 20 free seats
+car departed station with 10 new passenger(s) (expected 10)
+Looks good!
+car entering station with 44 free seats
+car departed station with 44 new passenger(s) (expected 44)
+car entering station with 44 free seats
+car departed station with 44 new passenger(s) (expected 44)
+car entering station with 20 free seats
+car departed station with 12 new passenger(s) (expected 12)
+Looks good!
+car entering station with 44 free seats
+car departed station with 44 new passenger(s) (expected 44)
+car entering station with 11 free seats
+car departed station with 11 new passenger(s) (expected 11)
+car entering station with 27 free seats
+car departed station with 27 new passenger(s) (expected 27)
+car entering station with 37 free seats
+car departed station with 18 new passenger(s) (expected 18)
+Looks good!
+[?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ [7mgit add sync_car.c sync_car.h[27mgit add sync_car.c sync_car.h [K evidencias.log
+[?2004l[?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ git push
+[?2004lEverything up-to-date
+[?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ git pushadd sync_car.c sync_car.h evidencias.log
 [?2004l

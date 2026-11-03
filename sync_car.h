@@ -8,7 +8,6 @@ struct station
     int quant_assentos_livres;
     int quant_passageiros;
     int quant_embarcando;
-    bool vagao;
     pthread_mutex_t mutex;
     pthread_cond_t cond_passageiro;
     pthread_cond_t cond_vagao;
