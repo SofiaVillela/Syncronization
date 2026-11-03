@@ -1,0 +1,67 @@
+Script started on 2026-11-03 11:20:32-03:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="139" LINES="12"]
+[?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ date
+[?2004lTue Nov  3 11:20:34 -03 2026
+[?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ who [Kiam
+[?2004lwhoiam: command not found
+[?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ whoiam[K[K[Kami
+[?2004lsofiavillela
+[?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ whoamiiam[2Pdate[K[K[K[Kpwd
+[?2004l/mnt/c/Users/SofiaVillela/Syncronization
+[?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ [7mgit log --oneline  [27mgit log --oneline  
+[?2004l[?1h=[33m9a626e3[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m feat:Implementa station_init[m
+[33mc6cbb94[m feat: mutex e condicoes na struct + fix de header[m
+[33me5c9114[m fix:esqueci o tipo de retorno[m
+[33mcac3355[m feat: prototipos das funcoes[m
+[33m9fbe1bc[m feat: sync_car e struct station[m
+[33m5e21126[m feat: adicioan sync_car-runner.c[m
+[33m0da8560[m Initial commit[m
+[K[?1l>[?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ [7mgit status[27mgit status
+[?2004lOn branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	[31mevidencias.log[m
+
+nothing added to commit but untracked files present (use "git add" to track)
+[?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ [7mls -l  [27mls -l  
+[?2004ltotal 12
+-rwxrwxrwx 1 sofiavillela sofiavillela   16 Nov  3 08:42 [0m[01;32mREADME.md[0m
+-rwxrwxrwx 1 sofiavillela sofiavillela 2048 Nov  3 11:22 [01;32mevidencias.log[0m
+-rwxrwxrwx 1 sofiavillela sofiavillela 4230 Nov  3 08:37 [01;32msync_car-runner.c[0m
+-rwxrwxrwx 1 sofiavillela sofiavillela  328 Nov  3 11:16 [01;32msync_car.c[0m
+-rwxrwxrwx 1 sofiavillela sofiavillela  498 Nov  3 11:06 [01;32msync_car.h[0m
+[?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ [7mcat sync_car.h  [27mcat sync_car.h  
+[?2004l#ifndef SYNC_CAR_H
+#include <stdbool.h>
+#include <pthread.h>
+#define SYNC_CAR_H
+
+struct station
+{
+    int quant_assentos_livres;
+    int quant_passageiros;
+    bool vagao;
+    pthread_mutex_t mutex;
+    pthread_cond_t cond_passageiro;
+    pthread_cond_t cond_vagao;
+};
+
+void station_init(struct station *station);
+void station_load_car(struct station *station, int count);
+void station_wait_for_car(struct station *station);
+void station_on_board(struct station *station);
+#endif[?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ [7mcat sync_car.c     [27mcat sync_car.c     
+[?2004l#include "sync_car.h"
+
+void station_init(struct station *station){
+    station->quant_assentos_livres = 0;
+    station->quant_passageiros = 0;
+    station->vagao = false;
+
+    pthread_mutex_init(&station->mutex, NULL);
+    pthread_cond_init(&station->cond_passageiro, NULL);
+    pthread_cond_init(&station->cond_vagao, NULL);
+
+}[?2004h]0;sofiavillela@SofiaVillel-PC: /mnt/c/Users/SofiaVillela/Syncronization[01;32msofiavillela@SofiaVillel-PC[00m:[01;34m/mnt/c/Users/SofiaVillela/Syncronization[00m$ [7mgcc -Wall -c sync_car.c [27mgcc -Wall -c sync_car.c 
+[?2004l[?2004h]0;sofiavillela@SofiaVillel
